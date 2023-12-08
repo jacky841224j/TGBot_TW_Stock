@@ -49,6 +49,7 @@ var app = builder.Build();
 // It is expected that BotController has single method accepting Update
 app.MapBotWebhookRoute<BotController>(route: botConfiguration.Route);
 app.MapControllers();
+app.MapGet("/", () => $"Hello!");
 app.Run();
 
 #pragma warning disable CA1050 // Declare types in namespaces
