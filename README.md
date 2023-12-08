@@ -1,58 +1,56 @@
+# TG 台股查詢機器人 基本使用教學  :memo:
 
-# ASP.NET Core Webhook Example
+使用方法：
 
-## About
+1.下載後將appsettings裡的APIkey換成自己的API Key後執行檔案即可使用
 
-This project is a simple ASP.NET Core application, which provides webhook endpoint for the Telegram Bot.
-
-You can find useful information on setting up webhook for your bot in official docs:
-
-- [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)
-- [Getting updates](https://core.telegram.org/bots/api#getting-updates)
-- [setWebhook](https://core.telegram.org/bots/api#setwebhook)
-- [getWebhookInfo](https://core.telegram.org/bots/api#getwebhookinfo)
-
-## Setup
-
-Please make sure you have .NET 6 or newer installed. You can download .NET runtime from the [official site.](https://dotnet.microsoft.com/download)
-This is a short description how you can test your bot locally. The description presumes that you already have a bot and it’s token. If not, please create one. You’ll find several explanations on the internet how to do this.
-
-### Bot configuration
-
-You have to specify your Bot token in **appsettings.json**. Replace **{BotToken}** in **appsettings.json** with actual Bot token. Also you have to specify endpoint, to which Telegram will send new updates with `HostAddress` parameter:
-
-```json
-"BotConfiguration": {
-    "BotToken": "{BotToken}",
-    "HostAddress": "https://mydomain.com"
-}
+2.(非必要)打包成Docker使用，Dockerfile已經寫好了，直接使用下面指令build即可
+  Docker build 指令
+```cmd
+  docker build -t 名稱 . --no-cache
 ```
 
-you can specify separate development configuration with **appsettings.Development.json**.
-
-## Ngrok
-
-Ngrok gives you the opportunity to access your local machine from a temporary subdomain provided by ngrok. This domain can later send to the telegram API as URL for the webhook.
-Install ngrok from this page: [ngrok - download](https://ngrok.com/download) or via homebrew cask:
-
-```shell
-brew install --cask ngrok
+展示用機器人ID
+```cmd
+https://t.me/Tian_Stock_bot
 ```
 
-and start ngrok on port 8443.
+## 機器人指令
 
-```shell
-ngrok http 8443 
+⭐️K線走勢圖
+```cmd
+/k 2330 d
+h - 查詢時K線
+d - 查詢日K線
+w - 查詢週K線
+m - 查詢月K線
+5m - 查詢5分K線
+10m - 查詢10分K線
+15m - 查詢15分K線
+30m - 查詢30分K線
+60m - 查詢60分K線
+```
+⭐️股價資訊
+```cmd
+/v 2330 
+```
+⭐️績效資訊
+```cmd
+/p 2330 
+```
+⭐️個股新聞
+```cmd
+/n 2330
 ```
 
-Telegram API only supports the ports 443, 80, 88 or 8443. Feel free to change the port in the config of the project.
+## 使用TradingView查詢
 
-### Set Webhook
+⭐️查看圖表
+```cmd
+/chart 2330
+```
 
-From ngrok you get an URL to your local server. It’s important to use the `https` one. You can manually set webhook with  [setWebhook](https://core.telegram.org/bots/api#setwebhook) API call, providing this URL as form-data (key: url, value: `https://yoursubdomain.ngrok.io/api/update`).
-
-### Run Bot
-
-Now you can start the Bot in a local instance. Check if the port of the application matches the port on which ngrok is running.
-
-Now your bot should answer with the text from every message you send to it.
+⭐️選擇週期範圍
+```cmd
+/range 2330
+```
