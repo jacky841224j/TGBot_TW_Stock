@@ -59,7 +59,7 @@ public class UpdateHandlers
 
         if (messageText == "/start" || messageText == "hello")
         {
-            var mess = await _botClient.SendTextMessageAsync(
+            await _botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
                 text: "Hello " + message.From.FirstName + " " + message.From.LastName + "",
                 replyMarkup: new ReplyKeyboardRemove(),

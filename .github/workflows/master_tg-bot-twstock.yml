@@ -63,15 +63,3 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-    
-      - name: Executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
-        with:
-            host: ${{ secrets.HOST_DNS }}
-            username: ${{ secrets.USERNAME }}
-            key: ${{ secrets.EC2_SSH_KEY }}
-            script: |
-              pkill TGBot_TW_Stock
-              pkill dotnet
-              cd ${{ secrets.TARGET_DIR }}
-               dotnet run > /dev/null 2>&1 &
