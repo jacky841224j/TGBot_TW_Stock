@@ -31,10 +31,10 @@ public class ConfigureWebhook : IHostedService
         // "X-Telegram-Bot-Api-Secret-Token" with the secret token as content.
         var webhookAddress = $"{_botConfig.HostAddress}{_botConfig.Route}";
         _logger.LogInformation("Setting webhook: {WebhookAddress}", webhookAddress);
-        await botClient.SetWebhookAsync(
-            url: webhookAddress,
-            allowedUpdates: Array.Empty<UpdateType>(),
-            cancellationToken: cancellationToken);
+        //await botClient.SetWebhookAsync(
+        //    url: webhookAddress,
+        //    allowedUpdates: Array.Empty<UpdateType>(),
+        //    cancellationToken: cancellationToken);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
@@ -44,6 +44,6 @@ public class ConfigureWebhook : IHostedService
 
         // Remove webhook on app shutdown
         _logger.LogInformation("Removing webhook");
-        await botClient.DeleteWebhookAsync(cancellationToken: cancellationToken);
+        //await botClient.DeleteWebhookAsync(cancellationToken: cancellationToken);
     }
 }
